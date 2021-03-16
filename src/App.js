@@ -15,7 +15,7 @@ render() {
       <h1>BudgetTalk</h1>
       <Cpd className="cpd"/>
       {/* <Arena className="arena" /> */}
-      <FightResult className="fightresult" />
+     
     </div>
   );
 }
