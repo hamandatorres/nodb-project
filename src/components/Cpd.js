@@ -8,7 +8,8 @@ class Cpd extends Component {
   constructor() {
     super();
     this.state = {
-      cp: []
+      cp: [
+      ]
     }
     this.moveCp = this.moveCp.bind(this)
   }
@@ -16,6 +17,7 @@ class Cpd extends Component {
    componentDidMount() {
    this.refreshCp()
   }
+
   refreshCp () { 
   axios.get('/api/councilperson')
 .then(response => {
@@ -23,30 +25,36 @@ class Cpd extends Component {
 })
 .catch(error => console.log(error))
   }
-  moveCp(event) {
-      axios.post(`/api/councilperson`, { cp: this.state.cp })
+
+  moveCp() {
+    // const age = { age: this.state.cp };
+    // const name = { name: this.state.cp };
+      axios.post(`/api/councilperson`, { 
+        name: this.state.cp.name,
+        age: this.state.cp.age
+      })
     .then(response => {
       this.setState({ cp: response.data})
       // const arenaCp = {...this.state.cp}
     })
     .catch(error => console.log(error))
   }  
-  
+
   render() {
     const cpList = this.state.cp.map((cps, i) => (
-      <li key={this.state.cp.id}>{this.state.cp[0].name}</li>))
-
-      
+      <li key={cps.id}>{cps.name}</li>))
       return (
         <div>
         <h2>Councilpeople</h2>
         <h3>{cpList}</h3>
-        <NewCp moveCp={this.moveCp} />
-        <button onClick={this.moveCp}>Move</button>
-        <Arena />
-        
+        <NewCp 
+        moveCp={this.moveCp} 
+        onSubmit={this.refreshCp} />
+        {/* <button onClick={this.moveCp}>Move</button> */}
+        <Arena moveCp={this.moveCp}  />
         </div>
     )
   }
 }
+
 export default Cpd;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 
 export default function NewCp(props) {
@@ -13,10 +14,18 @@ export default function NewCp(props) {
       Name: ${name}
       Age: ${age}
       `);
+      axios.post(`/api/councilperson`, { 
+        name:name,
+        age:age
+      })
+    .then(response => {
+      props.onSubmit()
+      // this.setState({ cp: response.data})
+      // const arenaCp = {...this.state.cp}
+    })
+    .catch(error => console.log(error))
     event.preventDefault();
-    props.moveCp(event)
   }
-
   return (
     <form onSubmit={handleSubmit}>
       <h3>Submit Council Person</h3>
