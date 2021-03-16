@@ -2,7 +2,25 @@
   text-align: center;
 }
 
-.App-logo {
+.body {
+  margin:0;
+  border: 2px solid black;
+}
+.cpd {
+  border: 2px solid black;
+}
+.arena {
+  border: 2px solid black;
+}
+.fightresult{
+  border: 2px solid black;
+
+}
+
+
+
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +53,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
